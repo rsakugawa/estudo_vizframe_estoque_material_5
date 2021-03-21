@@ -1,0 +1,30 @@
+ESPECIFICAÇÃO GRAFICO STACKED_BAR "ESTOQUE DE PRODUTOS"
+
+1) COMBOBOX 1
+SELECIONA SUB CATEGORIA (sem filtro)
+http://cbcsapmob03.sapcbc.corp:8020/sap/opu/odata/sap/EPM_REF_APPS_SHOP_SRV/SubCategories
+
+Id:Computer System Accessories
+Name:Computer System Accessories
+
+2) COMBOBOX 2
+SELECIONA PRODUTOS DA SUBCATEGORIA 
+http://cbcsapmob03.sapcbc.corp:8020/sap/opu/odata/sap/EPM_REF_APPS_SHOP_SRV/Products?$filter= (SubCategoryId eq 'Notebooks')
+
+Id: HT-1000
+Name: Notebook Basic 15
+
+
+3) EXIBIR GRAFICO
+GERA GRAFICO POR STACKED_BAR
+
+
+
+POR ID DO PRODUTO E ESTOQUE
+
+
+> ID PRODUTO
+> NOME PRODUTO
+> CATEGORIA DO PRODUTO
+> ESTOQUE
+

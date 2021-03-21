@@ -1,0 +1,93 @@
+<mvc:View
+    controllerName="estudovizframeestoquematerial.controller.View1"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+    xmlns="sap.m"
+	xmlns:fb="sap.ui.comp.filterbar"
+	xmlns:core="sap.ui.core"
+	xmlns:chart="sap.suite.ui.commons"
+	xmlns:viz="sap.viz.ui5.controls" 
+>
+	<Shell id="shell">
+		<App id="app">
+			<pages>
+				<Page id="page" title="{i18n>title}">
+					<content>
+
+					<!-- Início - Filtro'-->
+					<fb:FilterBar id="filterBar"
+   								  header="Filtro de Busca"
+								  search="onSearch"
+								  useToolbar="false">
+
+						<fb:filterGroupItems>
+
+						<!-- Início - Campo de seleção 'Sub Categorias'-->
+						<fb:FilterGroupItem  groupName="grafico_estoque"
+											 name="SubCategories"
+											 label="Sub Categorias"
+											 visibleInFilterBar="true">
+
+							<fb:control>
+								<ComboBox change="onChangeSubCat" 
+										 id="idSubCatComboBox"
+										 required="false"
+										 width="150px"
+								         items="{SubCatOdata>/}">
+								<items>
+								<core:ListItem key= "{SubCatOdata>Id}" 
+								          text= "{SubCatOdata>Name}" />													
+								</items>
+								</ComboBox>
+							</fb:control>
+							
+						</fb:FilterGroupItem> 
+                        <!-- Fim - Campo de seleção 'Sub Categorias'-->
+
+						<!-- Início - Campo de seleção 'Material'-->
+						<fb:FilterGroupItem  groupName="grafico_estoque"
+											 name="Material"
+											 label="Material"
+											 visibleInFilterBar="true">
+
+							<fb:control>
+								<MultiComboBox
+									id="idMaterialComboBox"
+									width="70%" 
+									items="{MaterialOdata>/}">
+									<core:Item key="{MaterialOdata>Id}" 
+									            text="{MaterialOdata>Id} - {MaterialOdata>Name}"/>
+								</MultiComboBox>
+						    </fb:control>
+
+						</fb:FilterGroupItem> 
+                        <!-- Width acima não faz efeito ?-->
+						<!-- Fim - Campo de seleção 'Material'-->
+						</fb:filterGroupItems>
+                    </fb:FilterBar> 
+					<!-- Fim - Filtro''-->
+						
+					<!-- Inicio - Gráfico -->						
+						<chart:ChartContainer autoAdjustHeight="true" 
+						                      id="idPopOver"  
+											  title="Titulo do Container">						
+							<chart:ChartContainerContent icon="sap-icon://horizontal-stacked-chart" 
+														title="Titulo do Grafico">
+
+
+							<chart:content>
+							<viz:VizFrame uiConfig="{applicationSet:'fiori'}" id="idChart" />
+							</chart:content>
+
+							</chart:ChartContainerContent>
+
+						</chart:ChartContainer>
+					<!-- Fim - Gráfico -->
+
+
+				</content>
+				</Page>
+			</pages>
+		</App>
+	</Shell>
+</mvc:View>
